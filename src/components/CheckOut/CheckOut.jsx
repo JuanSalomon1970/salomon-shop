@@ -1,14 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../context/CartContext';
 import { useForm } from 'react-hook-form';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase/data'; 
 
 const CheckOut = () => {
 
+    const [pedidoId, setPedidoId] = useState("");
+
     const {carrito, precioTotal, vaciarCarrito} = useContext(CartContext);
 
-    const {registrer, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm();
 
     const comprar = (data) =>{
         const pedidoFinalizado = {
@@ -20,15 +22,18 @@ const CheckOut = () => {
         const pedidosReferencia = collection (db, "pedidos");
 
         addDoc(pedidosReferencia, pedidoFinalizado);
+        .then((doc)=>{
+            setPedidoId(doc.id)
+        })
     }
 
   return (
     <div className='contenedor'>
     <h1 className='titulos'>Checkout</h1>
     <form className='formulario' onSubmit={handleSubmit(comprar)}>
-        <input type="text" placeholder='Ingrese su nombre' {...registrer("nombre")}/>
-        <input type="email" placeholder='Ingrese su email' {...registrer("email")}/>
-        <input type="tel" placeholder='Ingrese su telefono' {...registrer("telefono")}/>
+        <input type="text" placeholder='Ingrese su nombre' {...register("nombre")}/>
+        <input type="email" placeholder='Ingrese su email' {...register("email")}/>
+        <input type="tel" placeholder='Ingrese su telefono' {...register("telefono")}/>
         <button className='enviar' type='submit'>comprar</button>
     </form>
 </div>
