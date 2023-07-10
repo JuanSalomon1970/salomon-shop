@@ -15,7 +15,7 @@ const categoria = useParams().categoria;
     useEffect (() => {
         const productosReferencia = collection (db,"productos");
 
-        const requerimiento = query(productosReferencia, where("categoria", "==", categoria));
+        const requerimiento = categoria ? query(productosReferencia, where("categoria", "==", categoria)) : productosReferencia;
 
 
         getDocs (requerimiento)
