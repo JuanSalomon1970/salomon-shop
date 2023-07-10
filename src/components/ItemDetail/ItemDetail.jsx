@@ -4,7 +4,7 @@ import { CartContext } from "../../context/CartContext";
 
  const ItemDetail = ({item}) => {
 
-    const {carrito, agregarAlcarrito} = useContext(CartContext);
+    const {carrito, agregarAlCarrito} = useContext(CartContext);
     console.log(carrito);
 
     const [cantidad, setCantidad] = useState(1);
@@ -29,7 +29,7 @@ import { CartContext } from "../../context/CartContext";
                     cantidad={cantidad}
                     funSumar={funSumar}
                     funRestar={funRestar}
-                    funAgregar = {() => {agregarAlcarrito(item, cantidad) }}
+                    funAgregar = {() => {agregarAlCarrito(item, cantidad) }}
                     />
                 </div>
             </div>
