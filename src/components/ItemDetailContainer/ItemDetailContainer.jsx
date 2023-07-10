@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { pedirItemId } from "../../helpers/enviardatos";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
+import {doc, getDoc} from "firebase/firestore";
+import { db } from "../../firebase/data";
 
 const ItemDetailContainer = () => {
 
@@ -9,15 +10,14 @@ const ItemDetailContainer = () => {
   const id = useParams ().id;
 
 useEffect(() => {
-  pedirItemId(Number(id))
-  .then((res) =>{
-    setItem(res)
+  const docRef = doc(db, "productos", id)
+  getDoc(docRef)
+  .then ((resp) => {
+    setItem (
+      {...resp.data(), id: resp.id}
+    );
   })
 }, [id])
-
-
-
-
 
   return (
     <div>

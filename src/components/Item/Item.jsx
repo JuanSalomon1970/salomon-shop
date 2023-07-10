@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
             <h4>{producto.nombre}</h4>
             <p>Precio: $ {producto.precio}</p>
             <p>Categoria: {producto.categoria}</p>
-            <Link className="ver-mas" to={`/Item/${producto.id}`}>Ver más</Link>
+            <Link className="ver-mas" to={`/item/${producto.id}`}>Ver más</Link>
         </div>
 
     </div>
