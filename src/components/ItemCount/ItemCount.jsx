@@ -9,7 +9,7 @@ const ItemCount = ( {cantidad, funRestar, funSumar, funAgregar} ) => {
             <p>{cantidad}</p>
             <button onClick={funSumar}>+</button>
         </div>
-        <button className="agregar-al-carrito" onClick={funAgregar}>Agregar al carrito</button>
+        <button className="agregar-carrito" onClick={funAgregar}>Agregar al carrito</button>
     </div>
   )
 }

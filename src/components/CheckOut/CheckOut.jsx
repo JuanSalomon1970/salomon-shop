@@ -19,12 +19,21 @@ const CheckOut = () => {
             total: precioTotal()
         }
 
-        const pedidosReferencia = collection (db, "pedidos");
+        const pedidosReferencia = collection (db, "pedidos")
 
-        addDoc(pedidosReferencia, pedidoFinalizado);
+        addDoc(pedidosReferencia, pedidoFinalizado)
         .then((doc)=>{
-            setPedidoId(doc.id)
+            setPedidoId(doc.id);
         })
+    }
+
+    if (pedidoId) {
+        return (
+            <div className="contenedor-compra">
+                <h1 className="main-title-formulario">Muchas gracias por tu compra</h1>
+                <p>Tu número de pedido es: {pedidoId}</p>
+            </div>
+        )
     }
 
   return (
